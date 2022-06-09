@@ -82,7 +82,7 @@ lblname3.grid(row=3, column=0,sticky = W)
 
 Items = StringVar()
 ComboBox= ttk.Combobox(root,textvariable=Items,values=("Ballons", "Lights",
-                                                       "Party Hats", "Sound System", "Dance Floors", "Invitation Cards" )
+                                                       "Party Hats"," Streamers ",  "Sound System", "Dance Floors", "Invitation Cards" )
                        ,state ="readonly").grid(row=3,column=1)
 
 # Number of Items Hired
