@@ -91,9 +91,32 @@ ComboBox= ttk.Combobox(root,textvariable=Items,values=("Ballons", "Lights",
 lblname4=ttk.Label(text="Number of Items Hired:")
 lblname4.grid(row=4,column=0,sticky=W)
 
+# Print details of all the customers
+def print_customer_details():
+    global total_entries,name_count
+
+    #create the colum headings
+    name_count=0
+    Label(main_window, font=("Arial 10 bold"), text="Row").grid(column=0, row=10)
+    Label(main_window, font=("Arial 10 bold"), text="Customers Full Name").grid(column=1, row=10)
+    Label(main_window, font=("Arial 10 bold"), text="Receipt Number").grid(column=2, row=10)
+    Label(main_window, font=("Arial 10 bold"), text="Items Hired ").grid(column=3, row=10)
+    Label(main_window, font=("Arial 10 bold"), text="Number of Items").grid(column=4, row=10)
+
+ #add each item in the list onto its own row
+    while name_count < total_entries :
+        Label(main_window, text=name_count).grid(column=0,row=name_count+11)
+        Label(main_window, text=(customer_details[name_count][0])).grid(column=1,row=name_count+11)
+        Label(main_window, text=(customer_details[name_count][1])).grid(column=2,row=name_count+11)
+        Label(main_window, text=(customer_details[name_count][2])).grid(column=3,row=name_count+11)
+        Label(main_window, text=(customer_details[name_count][3])).grid(column=4,row=name_count+11)
+        main_window.geometry("")
+        name_count += 1
+   
+def append_details ():
+    global customer_details, entry_name, entry_name_first, entry_name_blank, entry_receipt, entry_receipt_string, entry_receipt_blank, entry_receipt_special, entry_item, entry_item_blank, entry_quantity, entry_quantity_blank, entry_quantity_limit, entry_quantity_letter, total_entries
 
 
-
-
+# Append Button
 root.geometry("1000x500") # Size of the window
 root.mainloop()
