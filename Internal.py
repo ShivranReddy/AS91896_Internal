@@ -146,12 +146,13 @@
 
 from tkinter import *
 import random
+import re
 
 main_window= Tk()
 
 #       quit command for the whole program
-def quit ():
-    main_window.destory()
+#def quit ():
+   # main_window.destory()
 
 #    append detials for the whole program
 def append_details():
@@ -165,51 +166,48 @@ def customer_details():
     global customer_detials
 
 #          delete a row from a list command
-def delete_row():
-    global customer_details,delete_item,total_entries,name_count
+#def delete_row():
+    #global customer_details,delete_item,total_entries,name_count
 
 # delete item
-def delete_items():
-    global delete_item
-
-#Customer Detials
-    
-customer_detials = []
-total_entries = 0 
+#def delete_items():
+#customer_detials = []
+total_entries = 0
+#delete_item = []
 
 
 # indentify which row is to be deleted then the program shall proceed
 
-del customer_details[int(delete_item.get())]
-total_entries=-1
-delete_item.delete(0,"end")
+#del customer_details[int(delete_item.get())]
+#total_entries = -1
+#delete_item.delete(0,"end")
 
-Label(main_window,text=" ").grid(coloum=1,row=name_count+10)
-Label(main_window,text=" ").grid(coloum=2,row=name_count+10)
-Label(main_window,text=" ").grid(coloum=3,row=name_count+10)
-Label(main_window,text=" ").grid(coloum=4,row=name_count+10)
-Label(main_window,text=" ").grid(coloum=5,row=name_count+10)
-print_customer_detials()
+#Label(main_window,text=" ").grid(coloum=1,row=name_count+10)
+#Label(main_window,text=" ").grid(coloum=2,row=name_count+10)
+#Label(main_window,text=" ").grid(coloum=3,row=name_count+10)
+#Label(main_window,text=" ").grid(coloum=4,row=name_count+10)
+#Label(main_window,text=" ").grid(coloum=5,row=name_count+10)
+#print_customer_detials()
 
 
 
 #       All the buttons for the program
 
 # Quit Command
-Quit = Button(main_window, fg="red",text="Quit", command = quit, width = 5)
+Quit = Button(main_window, fg="red",text="Quit", command = quit, width = 12)
 Quit.grid(column = 5 ,row = 1,sticky=E)
 
 # Append Command
-Append = Button(main_window, fg= "green", text= " Append Details" , command= append_details, width =5)
+Append = Button(main_window, fg= "green", text= " Append Details" , command= append_details, width =12)
 Append.grid(column = 5 , row = 3 , sticky=E)
 
 #Print Command
-Print =Button(main_window , fg="blue", text="Print Details", command = print_customer_details,width =5)
+Print =Button(main_window , fg="blue", text="Print Details", command = print_customer_details,width =12)
 Print.grid(column = 5 , row = 0 , sticky=E)
 
 #Delete Row
-Delete = Button(main_window, text="Delete Row", command=delete_row,width=5)
-Delete.grid(column = 1 , row = 6 , sticky=W)
+#Delete = Button(main_window, text="Delete Row", command=delete_row,width=5)
+#Delete.grid(column = 1 , row = 6 , sticky=W)
 
 
 #       All the Labels for the program
@@ -219,8 +217,8 @@ Customer = Label(main_window,text="Customers Full Name:")
 Customer.grid(column = 1 , row = 1 , sticky=W)
 
 # Title for the program
-Title = Label(main_window,text=" Julie's Party Hire", font=(("Arial"),32 ))
-Title.grid(column = 3, row = 1 )
+Title = Label(main_window,text=" Julie's Party Hire", font=(("Arial"),30 ))
+Title.grid(column = 3, row = 0 )
 
 # Receipt Number
 Receipt = Label(main_window, text="Receipt Number:")
@@ -237,7 +235,7 @@ Numbers.grid(column = 1 , row =4, sticky=W)
 
 # Row#
 Label(main_window, text="Row#")
-Label.grid(column = 1 , row = 5 , sticky=W)
+#Label.grid(column = 1 , row = 5 , sticky=W)
 
 #      All the entry boxes for the program
 
@@ -268,24 +266,24 @@ name_count = 0
 # Row Heading
 
 Label(main_window, font=("Arial 12 bold"),text="Row")
-Label.grid(column = 0 , row =10)
+#Label.grid(column = 0 , row =10)
 
 # Customer Name heading
 Label(main_window, font=("Arial 12 bold"),text="Full Customer Name")
-Label.grid(column = 1 , row =10)
+##Label.grid(column = 1 , row =10)
 
 # Receipt Number heading
 Label(main_window, font=("Arial 12 bold"),text="Receipt Number")
-Label.grid(column = 2 , row= 10)
+#Label.grid(column = 2 , row= 10)
 
 # Items Hired heading
 
 Label(main_window, font=("Arial 12 bold"),text="Items Hired")
-Label.grid(column = 3 , row =10)
+#Label.grid(column = 3 , row =10)
 
 # Number of items hired heading
 Label(main_window, font=("Arial 12 bold"),text="Number of items")
-Label.grid(column = 4, row =10)
+#Label.grid(column = 4, row =10)
 
 #     add each value to its respective row
 while name_count< total_entries:
@@ -349,29 +347,29 @@ while name_count< total_entries:
 
 # check the number of items is not blank and it must be 1 and 500, set error message
 if len(re.findall(r'\w+', entry_number.get())) == 0 :
-        entry_number_blank.destory()
-        entry_number_letter.destory()
-        entry_number_limit.destory()
-        entry_number_blank = Label(main_window, fg = "red" , text=" This cannot be left blank, please enter the number of items you wish to hire.").grid(row=5, column = 5)
+      #  entry_number_blank.destory()
+        #entry_number_letter.destory()
+        #entry_number_limit.destory()
+      #  entry_number_blank = Label(main_window, fg = "red" , text=" This cannot be left blank, please enter the number of items you wish to hire.").grid(row=5, column = 5)
      
 
 #      vaule check
 
-try:
-    inter = int(entry_number.get())
-    if 500< int(entry_number.get()) or int(entry_numbers.get()) < 0:
+    try:
+        inter = int(entry_number.get())
+        if 500< int(entry_number.get()) or int(entry_numbers.get()) < 0:
             entry_number_blank.destory()
             entry_number_letter.destory()
             entry_number_limit.destory()
             entry_number_limit(main_window, fg ="red", text="Invaild values. Please enter a vaild number between 1 and 500.").grid(row=6, column = 5)
 
-    if 501 > int(entry_number.get())>0:
-        entry_number_blank.destory()
-        entry_number_letter.destory()
-        entry_number_limit.destory()
+        if 501 > int(entry_number.get())>0:
+            entry_number_blank.destory()
+            entry_number_letter.destory()
+            entry_number_limit.destory()
 
 #  if vaule cannot be checked , set error (custom ) message
-except ValueError: entry_number_letter = Label(main_window, fg ="red" , text =" Inavild vaule. Please only enter the number .").grid(row=7, column =5)
+    except ValueError: entry_number_letter = Label(main_window, fg ="red" , text =" Inavild vaule. Please only enter the number .").grid(row=7, column =5)
         
  # append all if everything is checked and meets the requirements of the program
 if len(re.findall(r'\w+', entry_name.get())) >1:
@@ -417,7 +415,7 @@ def main():
 
 # the GUI
 #GUI()
-placerholder()
+placeholder()
 
 main_window.title("Program")
 
