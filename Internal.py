@@ -146,53 +146,93 @@
 
 from tkinter import *
 import random
-import re
+
+main_window= Tk()
 
 #       quit command for the whole program
 def quit ():
     main_window.destory()
 
+#    append detials for the whole program
+def append_details():
+    global customer_details
+
+#      print customer details
+def print_customer_details():
+    global total_entries,name_count
+
+def customer_details():
+    global customer_detials
+
+#          delete a row from a list command
+def delete_row():
+    global customer_details,delete_item,total_entries,name_count
+
+# delete item
+def delete_items():
+    global delete_item
+
+#Customer Detials
+    
+customer_detials = []
+total_entries = 0 
+
+
+# indentify which row is to be deleted then the program shall proceed
+
+del customer_details[int(delete_item.get())]
+total_entries=-1
+delete_item.delete(0,"end")
+
+Label(main_window,text=" ").grid(coloum=1,row=name_count+10)
+Label(main_window,text=" ").grid(coloum=2,row=name_count+10)
+Label(main_window,text=" ").grid(coloum=3,row=name_count+10)
+Label(main_window,text=" ").grid(coloum=4,row=name_count+10)
+Label(main_window,text=" ").grid(coloum=5,row=name_count+10)
+print_customer_detials()
+
+
 
 #       All the buttons for the program
 
 # Quit Command
-Button(main_window, fg="red",text="Quit", command = quit, width = 5)
-Button.grid(column = 5 , row = 1 , sticky=E)
+Quit = Button(main_window, fg="red",text="Quit", command = quit, width = 5)
+Quit.grid(column = 5 ,row = 1,sticky=E)
 
 # Append Command
-Button(main_window, fg= "green", text= " Append Details" , command= append_details, width =5)
-Button.grid(column = 5 , row = 3 , sticky=E)
+Append = Button(main_window, fg= "green", text= " Append Details" , command= append_details, width =5)
+Append.grid(column = 5 , row = 3 , sticky=E)
 
 #Print Command
-Button(main_window , fg="blue", text="Print Details", command = print_customer_details,width =5)
-Button.grid(column = 5 , row = 0 , sticky=E)
+Print =Button(main_window , fg="blue", text="Print Details", command = print_customer_details,width =5)
+Print.grid(column = 5 , row = 0 , sticky=E)
 
 #Delete Row
-Button(main_window, text="Delete Row", command=delete_row,width=5)
-Button.grid(column = 1 , row = 6 , sticky=W)
+Delete = Button(main_window, text="Delete Row", command=delete_row,width=5)
+Delete.grid(column = 1 , row = 6 , sticky=W)
 
 
 #       All the Labels for the program
 
 #Customer Full Name
-Label(main_window,text="Customers Full Name:")
-Label.grid(column = 1 , row = 1 , sticky=W)
+Customer = Label(main_window,text="Customers Full Name:")
+Customer.grid(column = 1 , row = 1 , sticky=W)
 
 # Title for the program
-Label(main_window,text=" Julie's Party Hire", font=(("Arial"),32 ))
-Label.grid(column = 3, row = 1 )
+Title = Label(main_window,text=" Julie's Party Hire", font=(("Arial"),32 ))
+Title.grid(column = 3, row = 1 )
 
 # Receipt Number
-Label(main_window, text="Receipt Number:")
-Labe.grid(column = 1 , row = 2 , sticky=W)
+Receipt = Label(main_window, text="Receipt Number:")
+Receipt.grid(column = 1 , row = 2 , sticky=W)
 
 # Items Hired
-Label(main_window,text="Items Hired: ")
-Label.grid(column = 1 , row =3, sticky=W)
+Items = Label(main_window,text="Items Hired: ")
+Items.grid(column = 1 , row =3, sticky=W)
 
 # Number of Items Hired
-Label(main_window,text="Number of IItems Hired: ")
-Label.grid(column = 1 , row =4, sticky=W)
+Numbers =Label(main_window,text="Number of IItems Hired: ")
+Numbers.grid(column = 1 , row =4, sticky=W)
 
 
 # Row#
@@ -221,25 +261,6 @@ entry_number.grid(column =2 , row =4)
 delete_item= Entry(main_window)
 delete_item.grid(column =2 , row =5)
 
-#          delete a row from a list command
-def delete_row():
-    global customer_details,delete_item,total_entries,name_count
-# indentify which row is to be deleted then the program shall proceed
-del customer_details[int(delete_item.get())]
-total_entries=-1
-delete_item.delete(0,"end")
-
-Label(main_window,text=" ").grid(coloum=1,row=name_count+10)
-Label(main_window,text=" ").grid(coloum=2,row=name_count+10)
-Label(main_window,text=" ").grid(coloum=3,row=name_count+10)
-Label(main_window,text=" ").grid(coloum=4,row=name_count+10)
-Label(main_window,text=" ").grid(coloum=5,row=name_count+10)
-print_customer_detials()
-
-
-#      print customer details
-def print_customer_details():
-    global total_entries,name_count
 
 #     Create the column headings
 name_count = 0
@@ -278,8 +299,7 @@ while name_count< total_entries:
 
 
 #     must check for vaild inputs ( int , strings , non blank functions, etc )
-def append_details():
-    global customer_details
+
 
 #   check if customers full name has been entered in its entry box, set erroe message
     if  len(re.findall(r'\w+', entry_name_get())) == 0:
@@ -328,18 +348,18 @@ def append_details():
         entry_items_blank.destory()
 
 # check the number of items is not blank and it must be 1 and 500, set error message
-     if len(re.findall(r'\w+', entry_number.get())) == 0 :
-         entry_number_blank.destory()
-         entry_number_letter.destory()
-         entry_number_limit.destory()
-         entry_number_blank = Label(main_window, fg = "red" , text=" This cannot be left blank, please enter the number of items you wish to hire.").grid(row=5, column = 5)
+if len(re.findall(r'\w+', entry_number.get())) == 0 :
+        entry_number_blank.destory()
+        entry_number_letter.destory()
+        entry_number_limit.destory()
+        entry_number_blank = Label(main_window, fg = "red" , text=" This cannot be left blank, please enter the number of items you wish to hire.").grid(row=5, column = 5)
      
 
 #      vaule check
 
-    try:
-        inter = int(entry_number.get())
-        if 500< int(entry_number.get()) or int(entry_numbers.get()) < 0
+try:
+    inter = int(entry_number.get())
+    if 500< int(entry_number.get()) or int(entry_numbers.get()) < 0:
             entry_number_blank.destory()
             entry_number_letter.destory()
             entry_number_limit.destory()
@@ -351,13 +371,12 @@ def append_details():
         entry_number_limit.destory()
 
 #  if vaule cannot be checked , set error (custom ) message
-    except ValueError:
-        entry_number_letter = Label(main_window, fg ="red" , text =" Inavild vaule. Please only enter the number .").grid(row=7, column =5)
+except ValueError: entry_number_letter = Label(main_window, fg ="red" , text =" Inavild vaule. Please only enter the number .").grid(row=7, column =5)
         
  # append all if everything is checked and meets the requirements of the program
-     if len(re.findall(r'\w+', entry_name.get())) >1:
-         if entry_receipt.get().strip().isdecimal() == True:
-             if len(re.findall(r'\w+', entry_itmes.get())) >0:
+if len(re.findall(r'\w+', entry_name.get())) >1:
+    if entry_receipt.get().strip().isdecimal() == True:
+        if len(re.findall(r'\w+', entry_itmes.get())) >0:
                  if entry_number.get().strip().isdecimal()== True:
                      if 501 > int(entry_numbers.get()) >0:
                          customer_details.append([entry_name.get().tite(), entry_receipt.get(),entry_items.get(),entry_number.get()])
@@ -371,16 +390,18 @@ def append_details():
 
     #       all global entries
 
-def GUI():
-    global customer_details, entry_name, entry_name_first, entry_name_blank, entry_receipt, entry_receipt_string, entry_receipt_blank, entry_receipt_special, entry_items, entry_items_blank, entry_number, entry_number_blank, entry_number_limit, entry_number_letter, total_entries, delete_item
+#def GUI():
+    #global customer_details, entry_name, entry_name_first, entry_name_blank, entry_receipt, entry_receipt_string, entry_receipt_blank, entry_receipt_special, entry_items, entry_items_blank, entry_number, entry_number_blank, entry_number_limit, entry_number_letter, total_entries, delete_item
     
 
 def placeholder():
-    global customer_details, entry_name, entry_name_first, entry_name_blank, entry_receipt, entry_receipt_string, entry_receipt_blank, entry_receipt_special, entry_items, entry_items_blank, entry_number, entry_number_blank, entry_number_limit, entry_number_letter
+    global main_window
+    global entry_name_blank, entry_receipt, entry_receipt_string, entry_receipt_blank, entry_receipt_special, entry_items, entry_items_blank, entry_number, entry_number_blank, entry_number_limit, entry_number_letter
+    global customer_details, entry_name, entry_name_first
     entry_name_blank = Label(main_window, text = " ")
     entry_receipt_blank = Label(main_window, text = " ")
     entry_receipt_string = Label(main_window, text = " ")
-     entry_receipt_special = Label(main_window, text="")
+    entry_receipt_special = Label(main_window, text="")
     entry_items_blank = Label(main_window, text="")
     entry_number_blank = Label(main_window, text="")
     entry_number_letter = Label(main_window, text="")
@@ -392,13 +413,10 @@ def main():
     global customer_details, entry_name, entry_receipt, enter_items,entry_number, total_entries
 
     
-customer detials = []
-total entries = 0 
 
 
 # the GUI
-main_window= TK()
-GUI()
+#GUI()
 placerholder()
 
 main_window.title("Program")
