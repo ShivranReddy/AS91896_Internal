@@ -155,23 +155,30 @@ main_window= Tk()
    # main_window.destory()
 
 #    append detials for the whole program
+customer_details = []
+
 def append_details():
-    global customer_details
+    #global customer_details
+    customer_details.append([entry_name.get(), entry_receipt.get(), entry_items.get(), entry_number.get()])
+    #clear the boxes
+    entry_name.delete(0, "end")
+    entry_receipt.delete(0, "end")
+    entry_items.delete(0, "end")
+    entry_number.delete(0, "end")
+    
 
-#      print customer details
-def print_customer_details():
-    global total_entries,name_count
 
-def customer_details():
+def print_details():
     global customer_detials
 
 #          delete a row from a list command
-#def delete_row():
-    #global customer_details,delete_item,total_entries,name_count
+def delete_row():
+    global customer_details,delete_item,total_entries,name_count
 
 # delete item
 #def delete_items():
-#customer_detials = []
+
+customer_detials = []
 total_entries = 0
 #delete_item = []
 
@@ -202,7 +209,7 @@ Append = Button(main_window, fg= "green", text= " Append Details" , command= app
 Append.grid(column = 5 , row = 3 , sticky=E)
 
 #Print Command
-Print =Button(main_window , fg="blue", text="Print Details", command = print_customer_details,width =12)
+Print =Button(main_window , fg="blue", text="Print Details", command = print_details ,width =12)
 Print.grid(column = 5 , row = 0 , sticky=E)
 
 #Delete Row
@@ -229,7 +236,7 @@ Items = Label(main_window,text="Items Hired: ")
 Items.grid(column = 1 , row =3, sticky=W)
 
 # Number of Items Hired
-Numbers =Label(main_window,text="Number of IItems Hired: ")
+Numbers =Label(main_window,text="Number of Items Hired: ")
 Numbers.grid(column = 1 , row =4, sticky=W)
 
 
@@ -259,31 +266,35 @@ entry_number.grid(column =2 , row =4)
 delete_item= Entry(main_window)
 delete_item.grid(column =2 , row =5)
 
-
-#     Create the column headings
+#      print customer details
+def print_details():
+    global total_entries,name_count
 name_count = 0
+
+    
+#     Create the column headings
 
 # Row Heading
 
-Label(main_window, font=("Arial 12 bold"),text="Row")
-#Label.grid(column = 0 , row =10)
+Row_Label= Label(main_window, font=("Arial 12 bold"),text="Row")
+Row_Label.grid(column = 0 , row =10)
 
 # Customer Name heading
-Label(main_window, font=("Arial 12 bold"),text="Full Customer Name")
-##Label.grid(column = 1 , row =10)
+Customer_name=Label(main_window, font=("Arial 12 bold"),text="Full Customer Name")
+Customer_name.grid(column = 1 , row =10)
 
 # Receipt Number heading
-Label(main_window, font=("Arial 12 bold"),text="Receipt Number")
-#Label.grid(column = 2 , row= 10)
+Receipt_number=Label(main_window, font=("Arial 12 bold"),text="Receipt Number")
+Receipt_number.grid(column = 2 , row= 10)
 
 # Items Hired heading
 
-Label(main_window, font=("Arial 12 bold"),text="Items Hired")
-#Label.grid(column = 3 , row =10)
+Item_hired=Label(main_window, font=("Arial 12 bold"),text="Items Hired")
+Item_hired.grid(column = 3 , row =10)
 
 # Number of items hired heading
-Label(main_window, font=("Arial 12 bold"),text="Number of items")
-#Label.grid(column = 4, row =10)
+Numbers_of_items=Label(main_window, font=("Arial 12 bold"),text="Number of items")
+Numbers_of_items.grid(column = 4, row =10)
 
 #     add each value to its respective row
 while name_count< total_entries:
@@ -346,11 +357,11 @@ while name_count< total_entries:
         entry_items_blank.destory()
 
 # check the number of items is not blank and it must be 1 and 500, set error message
-if len(re.findall(r'\w+', entry_number.get())) == 0 :
-      #  entry_number_blank.destory()
-        #entry_number_letter.destory()
-        #entry_number_limit.destory()
-      #  entry_number_blank = Label(main_window, fg = "red" , text=" This cannot be left blank, please enter the number of items you wish to hire.").grid(row=5, column = 5)
+#if len(re.findall(r'\w+', entry_number.get())) == 0 :
+   # entry_numbers_blank.destory()
+    #entry_numbers_letter.destory()
+    #entry_numbers_limit.destory()
+    #entry_numbers_blank = Label(main_window, fg = "red" , text=" This cannot be left blank, please enter the number of items you wish to hire.").grid(row=5, column = 5)
      
 
 #      vaule check
@@ -392,18 +403,18 @@ if len(re.findall(r'\w+', entry_name.get())) >1:
     #global customer_details, entry_name, entry_name_first, entry_name_blank, entry_receipt, entry_receipt_string, entry_receipt_blank, entry_receipt_special, entry_items, entry_items_blank, entry_number, entry_number_blank, entry_number_limit, entry_number_letter, total_entries, delete_item
     
 
-def placeholder():
-    global main_window
-    global entry_name_blank, entry_receipt, entry_receipt_string, entry_receipt_blank, entry_receipt_special, entry_items, entry_items_blank, entry_number, entry_number_blank, entry_number_limit, entry_number_letter
-    global customer_details, entry_name, entry_name_first
-    entry_name_blank = Label(main_window, text = " ")
-    entry_receipt_blank = Label(main_window, text = " ")
-    entry_receipt_string = Label(main_window, text = " ")
-    entry_receipt_special = Label(main_window, text="")
-    entry_items_blank = Label(main_window, text="")
-    entry_number_blank = Label(main_window, text="")
-    entry_number_letter = Label(main_window, text="")
-    entry_number_limit = Label(main_window, text="")
+#def placeholder():
+  #  global main_window
+  #  global entry_name_blank, entry_receipt, entry_receipt_string, entry_receipt_blank, entry_receipt_special, entry_items, entry_items_blank, entry_number, entry_number_blank, entry_number_limit, entry_number_letter
+   # global customer_details, entry_name, entry_name_first
+   # entry_name_blank = Label(main_window, text = " ")
+   # entry_receipt_blank = Label(main_window, text = " ")
+   # entry_receipt_string = Label(main_window, text = " ")
+   # entry_receipt_special = Label(main_window, text="")
+   # entry_items_blank = Label(main_window, text="")
+   # entry_number_blank = Label(main_window, text="")
+   # entry_number_letter = Label(main_window, text="")
+   # entry_number_limit = Label(main_window, text="")
     
 
 def main():
@@ -415,7 +426,7 @@ def main():
 
 # the GUI
 #GUI()
-placeholder()
+#placeholder()
 
 main_window.title("Program")
 
