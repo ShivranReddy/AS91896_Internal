@@ -162,41 +162,29 @@ customer_details = []
 def print_details():
     global total_entries, entry_name, entry_receipt, entry_items, entry_number
     name_count = 0
-
-#     Create the column headings
-
+#    Create the column headings
 # Row Heading
-
-    Row_Label= Label(main_window, font=("Arial 12 bold"),text="Row")
-    Row_Label.grid(column = 0 , row =10)
-
+    Label(main_window, font=("Arial 12 bold"),text="Row").grid(column = 0 , row =10)
 # Customer Name heading
-    Customer_name=Label(main_window, font=("Arial 12 bold"),text="Full Customer Name")
-    Customer_name.grid(column = 1 , row =10)
-
+    Label(main_window, font=("Arial 12 bold"),text="Full Customer Name").grid(column = 1 , row =10)
 # Receipt Number heading
-    Receipt_number=Label(main_window, font=("Arial 12 bold"),text="Receipt Number")
-    Receipt_number.grid(column = 2 , row= 10)
-
+    Label(main_window, font=("Arial 12 bold"),text="Receipt Number").grid(column = 2 , row= 10)
 # Items Hired heading
-
-    Item_hired=Label(main_window, font=("Arial 12 bold"),text="Items Hired")
-    Item_hired.grid(column = 3 , row =10)
-
+    Label(main_window, font=("Arial 12 bold"),text="Items Hired").grid(column = 3 , row =10)
 # Number of items hired heading
-    Numbers_of_items=Label(main_window, font=("Arial 12 bold"),text="Number of items")
-    Numbers_of_items.grid(column = 4, row =10)
+    Label(main_window, font=("Arial 12 bold"),text="Number of items").grid(column = 4, row =10)
 
-    total_entries = 0
+#total_entries = 0
 
 # add each value to its respective row
-    while name_count <   total_entries:
+    while name_count <  total_entries:
             Label(main_window, text = name_count).grid(column=0,row=name_count+11)
-            Row_Label(main_window,text = (customer_details[name_count][0])).grid(column=1,row=name_count+11)
-            Customer_name_Label(main_window,text = (customer_details[name_count][1])).grid(column=2,row=name_count+11)
-            Receipt_number_Label(main_window,text = (customer_details[name_count][2])).grid(column=3,row=name_count+11)
+            Label(main_window,text = (customer_details[name_count][0])).grid(column=1,row=name_count+11)
+            Label(main_window,text = (customer_details[name_count][1])).grid(column=2,row=name_count+11)
+            Label(main_window,text = (customer_details[name_count][2])).grid(column=3,row=name_count+11)
             Label(main_window,text = (customer_details[name_count][3])).grid(column=4,row=name_count+11)
             name_count +=1
+           
             
     
 
@@ -209,7 +197,7 @@ def append_details():
     entry_receipt.delete(0, "end")
     entry_items.delete(0, "end")
     entry_number.delete(0, "end")
-    
+    total_entries +=1
 
     
     
