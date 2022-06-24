@@ -190,7 +190,7 @@ def print_details():
 
 def append_details():
     #global customer_details
-    global total_entries, entry_name, entry_receipt, entry_items, entry_number
+    global customer_details, total_entries, entry_name, entry_receipt, entry_items, entry_number
     customer_details.append([entry_name.get(), entry_receipt.get(), entry_items.get(), entry_number.get()])
     #clear the boxes
     entry_name.delete(0, "end")
@@ -200,34 +200,23 @@ def append_details():
     total_entries +=1
 
     
-    
-
-#          delete a row from a list command
+    #          delete a row from a list command
+customer_details = []
 def delete_row():
-        global customer_details,delete_item,total_entries,name_count
-
-# delete item
-#def delete_items():
-
-customer_detials = []
+        global customer_details, delete_item, total_entries, name_count
+        del customer_details[int(delete_item.get())]
+        total_entries = total_entries- 1
+        name_count= 0
+        delete_item.delete(0, "end")
+        Label(main_window, text="                    " ).grid(column=0, row=name_count+11)
+        Label(main_window, text="                    " ).grid(column=1, row=name_count+11)
+        Label(main_window, text="                    " ).grid(column=2, row=name_count+11)
+        Label(main_window, text="                    " ).grid(column=3, row=name_count+11)
+        Label(main_window, text="                    " ).grid(column=4, row=name_count+11)
+        print_details()
+        
+customer_details = []
 total_entries = 0
-#delete_item = []
-
-
-# indentify which row is to be deleted then the program shall proceed
-
-#del customer_details[int(delete_item.get())]
-#total_entries = -1
-#delete_item.delete(0,"end")
-
-#Label(main_window,text=" ").grid(coloum=1,row=name_count+10)
-#Label(main_window,text=" ").grid(coloum=2,row=name_count+10)
-#Label(main_window,text=" ").grid(coloum=3,row=name_count+10)
-#Label(main_window,text=" ").grid(coloum=4,row=name_count+10)
-#Label(main_window,text=" ").grid(coloum=5,row=name_count+10)
-#print_customer_detials()
-
-
 
 #       All the buttons for the program
 
@@ -244,13 +233,9 @@ Print =Button(main_window , fg="blue", text="Print Details", command = print_det
 Print.grid(column = 5 , row = 0 , sticky=E)
 
 # Delete Row Command
-Delete_row=Button(main_window, text= " Delete Row#", command = delete_row, width = 12)
+Delete_row=Button(main_window, fg= "red", text= " Delete Row#", command = delete_row, width = 12)
 Delete_row.grid(column = 3, row = 5, sticky =W)
 
-
-#Delete Row
-#Delete = Button(main_window, text="Delete Row", command=delete_row,width=5)
-#Delete.grid(column = 1 , row = 6 , sticky=W)
 
 
 #       All the Labels for the program
@@ -280,7 +265,7 @@ Delete= Label(main_window,text=" Delete Row#")
 Delete.grid(column = 1 , row =5, sticky=W)
 
 # Row#
-Label(main_window, text="Row#")
+#Label(main_window, text="Row#")
 #Label.grid(column = 1 , row = 5 , sticky=W)
 
 #      All the entry boxes for the program
@@ -307,79 +292,57 @@ delete_item.grid(column =2 , row =5)
 
     
 
-
-
 #     must check for vaild inputs ( int , strings , non blank functions, etc )
 
 
 #   check if customers full name has been entered in its entry box, set error message
-#if  len(re.findall(r'\w+', entry_name.get())) == 0:
-      #  entry_name_blank.destory()
-      #  entry_name_first.destory()
-    #    entry_name_blank = Label(main_window, fg = " red " , text = " This cannot be left blank, please enter a vaild entry of a customers full name.")
-     #   entry_name_blank.grid(row = 1 , column = 4 )
-
+if  len(entry_name.get()) == 0:
+        Label(main_window, fg = "red" , text = "This cannot be left blank, please enter a vaild entry of a customers full name.").grid(row = 1 , column = 3 )
+        input_check = 1 
 
 #    check if receipt number has been entered, set error message
-#if len(re.final(r'\w+', entry_receipt_get())) == 0:
-   # entry_receipt_blank.destory()
-   # entry_receipt_string.destroy()
-   # entry_receipt_special.destroy()
-  #  entry_reciept_blank = Label(main_window, fg= "red " , text=" This cannot be left blank, please enter a vaild entry of the customers receipt number.").grid(row = 2, coloum= 5)
+if len(entry_receipt.get()) == 0: Label(main_window, fg= "red" , text="This cannot be left blank, please enter a vaild entry of the customers receipt number.").grid(row = 2, column= 3 )
+input_check = 1
         
         
 #      check if the receipt has a string in the entry causing it to be an invaild entry, set error message
-    #if len(re.findall(r'\w+', entry_receipt.get())) != 0:  
-      #  if entry_receipt.get().strip().isdecimal() == False:
-         #   entry_receipt_blank.destroy()
-         #   entry_receipt_string.destroy()
-          #  entry_receipt_special.destroy()
-         #   receipt_no_string = Label(main_window, fg= "red ", text= " No letters can be entered as the reciept number. Please enter a vaild receipt number.").grid(row=3, column =5)
-
+if len(entry_receipt.get()) != 0:  
+        if entry_receipt.get().strip().isdecimal() == False:
+            Label(main_window, fg= "red ", text= " No letters can be entered as the reciept number. Please enter a vaild receipt number.").grid(row=3, column =3)
+           
 #     check for other charchters or spaces inbetween the numbers of the reciept number
 
- #   if len(re.findall(r'\w+', entry_receipt.get())) != 0:
-  #      if entry_receipt.get().strip().isdecimal() == False:
-    #        entry_receipt_blank.destroy()
-     #       entry_receipt_string.destroy()
-     #       entry_receipt_special.destroy()
-         #   receipt_no_string = Label(main_window, text=" A space or charcther other than a number has been entered, this is invaild. Please enter the receipt number again.", fg="red ").grid(row= 3 , column = 5 )
+if len (entry_receipt.get()) != 0:
+    if entry_receipt.get().strip().isdecimal() == False:
+        Label(main_window, text=" A space or charcther other than a number has been entered, this is invaild. Please enter the receipt number again.", fg="red ").grid(row= 3 , column = 3 )
             
-#    if entry_receipt.get().strip().isdecimal() ==True:
-  #      entry_receipt_blank.destory()
-  #      entry_receipt_string.destory()
-  #      entry_receipt_special.destory()
+   # if entry_receipt.get().strip().isdecimal() ==True:
+        
 
-#  check that item is not blank, set error message
- #   if len(re.findall(r'\w+', entry_items.get())) == 0:
-    #    entry_items_blank.destory()
-    #    Label(main_window, fg="red", text= "This cannot be left blank, please enter the items you wish to hire.").grid(row=4, cloumn =5)
+ #check that item is not blank, set error message
+if len( entry_items.get()) == 0: Label(main_window, fg="red", text= "This cannot be left blank, please enter the items you wish to hire.").grid(row=3, column =3)
 
-   # if len(re.findall(r'\w+', entry_items.get())) > 0:
-   #     entry_items_blank.destory()
+####if len( entry_items.get()) > 0:
+
 
 # check the number of items is not blank and it must be 1 and 500, set error message
-#if len(re.findall(r'\w+', entry_number.get())) == 0 :
-   # entry_numbers_blank.destory()
-    #entry_numbers_letter.destory()
-    #entry_numbers_limit.destory()
-    #entry_numbers_blank = Label(main_window, fg = "red" , text=" This cannot be left blank, please enter the number of items you wish to hire.").grid(row=5, column = 5)
+if len( entry_number.get()) == 0 : Label(main_window, fg = "red" , text=" This cannot be left blank, please enter the number of items you wish to hire.").grid(row=4, column = 3)
      
 
 #      vaule check
 
 #try:
       #  inter = int(entry_number.get())
-     #   if 500< int(entry_number.get()) or int(entry_numbers.get()) < 0:
-       #     entry_number_blank.destory()
-       #     entry_number_letter.destory()
-        #    entry_number_limit.destory()
-         #   entry_number_limit(main_window, fg ="red", text="Invaild values. Please enter a vaild number between 1 and 500.").grid(row=6, column = 5)
+     #  if 500< int(entry_number.get()) or int(entry_numbers.get()) < 0:
+      #      entry_number_blank.destory()
+      #      entry_number_letter.destory()
+      #      entry_number_limit.destory()
+      #      entry_number_limit(main_window, fg ="red", text="Invaild values. Please enter a vaild number between 1 and 500.").grid(row=6, column = 5)
 
-     #   if 501 > int(entry_number.get())>0:
-        #    entry_number_blank.destory()
-         #   entry_number_letter.destory()
-         #   entry_number_limit.destory()
+      #  if 501 > int(entry_number.get())>0:
+         #entry_number_blank.destory()
+          #  entry_number_letter.destory()
+          #  entry_number_limit.destory()
 
 #  if vaule cannot be checked , set error (custom ) message
     #except ValueError: entry_number_letter = Label(main_window, fg ="red" , text =" Inavild vaule. Please only enter the number .").grid(row=7, column =5)
@@ -421,8 +384,8 @@ delete_item.grid(column =2 , row =5)
     
 
 def main():
-        global main_window
-        global customer_details, entry_name, entry_receipt, enter_items,entry_number, total_entries
+    global main_window
+    global customer_details, entry_name, entry_receipt, enter_items,entry_number, total_entries
 
     
 
